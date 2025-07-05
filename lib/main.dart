@@ -13,9 +13,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Personal Money Manager',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: const ScreenHome(),
+      home: ScreenHome(),
       debugShowCheckedModeBanner: false,
-      routes: {'/home': (context) => const ScreenHome()},
+      routes: {'/home': (context) => ScreenHome()},
     );
   }
 }
