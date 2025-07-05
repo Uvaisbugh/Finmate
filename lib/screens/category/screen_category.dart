@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 
 class CategoryScreen extends StatelessWidget {
-  const CategoryScreen({super.key});
+  CategoryScreen({super.key});
+
+  late TabController? _tabController;
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text('Category Screen'));
+    return Column(
+      children: [
+        Tab(child: Text('Income')),
+        Tab(child: Text('Expense')),
+      ],
+    );
   }
 }
