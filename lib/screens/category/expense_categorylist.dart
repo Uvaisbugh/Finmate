@@ -20,7 +20,6 @@ class ExpenseCategorylist extends StatelessWidget {
             child: const Icon(Icons.delete, color: Colors.white),
           ),
           onDismissed: (direction) {
-            // TODO: Remove the item from your data source
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text('Category ${index + 1} deleted')),
             );
