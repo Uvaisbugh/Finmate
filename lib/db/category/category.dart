@@ -1,4 +1,8 @@
+import 'package:hive/hive.dart';
 import 'package:personal_money_manager/models/category/category_model.dart';
+
+// ignore: constant_identifier_names
+const String CATEGORY_BOX_NAME = 'categoryBox';
 
 abstract class CategoryDBfunctions {
   Future<void> insertCategory(Category category);
@@ -10,32 +14,32 @@ abstract class CategoryDBfunctions {
 
 class CategoryDB implements CategoryDBfunctions {
   @override
-  Future<void> insertCategory(Category category) {
-    // Implementation for inserting a category into the database
-    throw UnimplementedError();
+  Future<void> insertCategory(Category category) async {
+    final box = await Hive.openBox<Category>(CATEGORY_BOX_NAME);
+    box.put(category.id, category);
   }
 
   @override
-  Future<void> updateCategory(Category category) {
-    // Implementation for updating a category in the database
-    throw UnimplementedError();
+  Future<void> updateCategory(Category category) async {
+    final box = await Hive.openBox<Category>(CATEGORY_BOX_NAME);
+    box.put(category.id, category);
   }
 
   @override
-  Future<void> deleteCategory(String id) {
-    // Implementation for deleting a category from the database
-    throw UnimplementedError();
+  Future<void> deleteCategory(String id) async {
+    final box = await Hive.openBox<Category>(CATEGORY_BOX_NAME);
+    box.delete(id);
   }
 
   @override
-  Future<Category?> getCategory(String id) {
-    // Implementation for retrieving a single category by ID
-    throw UnimplementedError();
+  Future<Category?> getCategory(String id) async {
+    final box = await Hive.openBox<Category>(CATEGORY_BOX_NAME);
+    return box.get(id);
   }
 
   @override
-  Future<List<Category>> getAllCategories() {
-    // Implementation for retrieving all categories from the database
-    throw UnimplementedError();
+  Future<List<Category>> getAllCategories() async {
+    final box = await Hive.openBox<Category>(CATEGORY_BOX_NAME);
+    return box.values.toList();
   }
 }
