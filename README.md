@@ -7,6 +7,7 @@ A comprehensive Flutter application for managing personal finances with income a
 ### 💰 Transaction Management
 - **Add Transactions**: Easy-to-use form to add income and expense transactions
 - **Transaction History**: View all transactions with detailed information
+- **Newest First Sorting**: Transactions and analytics are always shown with the newest at the top
 - **Delete Transactions**: Long press to delete unwanted transactions
 - **Real-time Updates**: Live updates using Hive database
 
@@ -27,6 +28,7 @@ A comprehensive Flutter application for managing personal finances with income a
 - **Responsive Design**: Works on all screen sizes
 - **Color-coded Transactions**: Green for income, red for expenses
 - **Smooth Animations**: Fluid transitions and interactions
+- **Standard Font**: Uses the platform's default font for a native look and feel
 
 ## Technical Stack
 
@@ -109,7 +111,8 @@ lib/
 1. The main screen shows all transactions
 2. Summary cards display balance, income, and expenses
 3. Transactions are sorted by date (newest first)
-4. Long press to delete transactions
+4. Analytics and charts also reflect newest-first sorting
+5. Long press to delete transactions
 
 ## Default Categories
 
