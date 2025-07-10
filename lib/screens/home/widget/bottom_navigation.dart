@@ -1,71 +1,77 @@
 import 'package:flutter/material.dart';
-import 'package:personal_money_manager/screens/home/screen_home.dart';
+import 'package:finmate/screens/home/screen_home.dart';
 
 class MoneyManagerBottomNavigation extends StatelessWidget {
   const MoneyManagerBottomNavigation({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 24, right: 24, bottom: 18),
-      child: ValueListenableBuilder(
-        valueListenable: ScreenHome.selectedIndexNotifier,
-        builder: (context, value, child) {
-          return PhysicalModel(
-            color: Colors.transparent,
-            elevation: 16,
-            borderRadius: BorderRadius.circular(30),
-            shadowColor: Colors.black.withOpacity(0.18),
-            child: Container(
-              height: 74, // Increased height for a premium look
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(30),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.08),
-                    blurRadius: 16,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
-              ),
-              child: BottomNavigationBar(
-                backgroundColor: Colors.transparent,
-                elevation: 0,
-                type: BottomNavigationBarType.fixed,
-                selectedItemColor: Theme.of(context).colorScheme.primary,
-                unselectedItemColor: Colors.blueGrey,
-                showSelectedLabels: true,
-                showUnselectedLabels: true,
-                iconSize: 32,
-                selectedFontSize: 14,
-                unselectedFontSize: 13,
-                currentIndex: ScreenHome.selectedIndexNotifier.value,
-                onTap: (int index) {
-                  ScreenHome.selectedIndexNotifier.value = index;
-                },
-                items: [
-                  BottomNavigationBarItem(
-                    icon: _buildNavIcon(
-                      icon: Icons.receipt_long_rounded,
-                      selected: value == 0,
-                      color: Theme.of(context).colorScheme.primary,
+    return SafeArea(
+      bottom: true,
+      top: false,
+      left: false,
+      right: false,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 24, right: 24),
+        child: ValueListenableBuilder(
+          valueListenable: ScreenHome.selectedIndexNotifier,
+          builder: (context, value, child) {
+            return PhysicalModel(
+              color: Colors.transparent,
+              elevation: 16,
+              borderRadius: BorderRadius.circular(30),
+              shadowColor: Colors.black.withOpacity(0.18),
+              child: Container(
+                // No height property here!
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(30),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.08),
+                      blurRadius: 16,
+                      offset: const Offset(0, 4),
                     ),
-                    label: 'Transactions',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: _buildNavIcon(
-                      icon: Icons.widgets_rounded,
-                      selected: value == 1,
-                      color: const Color(0xFF43A047),
+                  ],
+                ),
+                child: BottomNavigationBar(
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                  type: BottomNavigationBarType.fixed,
+                  selectedItemColor: Theme.of(context).colorScheme.primary,
+                  unselectedItemColor: Colors.blueGrey,
+                  showSelectedLabels: true,
+                  showUnselectedLabels: true,
+                  iconSize: 32,
+                  selectedFontSize: 14,
+                  unselectedFontSize: 13,
+                  currentIndex: ScreenHome.selectedIndexNotifier.value,
+                  onTap: (int index) {
+                    ScreenHome.selectedIndexNotifier.value = index;
+                  },
+                  items: [
+                    BottomNavigationBarItem(
+                      icon: _buildNavIcon(
+                        icon: Icons.receipt_long_rounded,
+                        selected: value == 0,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                      label: 'Transactions',
                     ),
-                    label: 'Category',
-                  ),
-                ],
+                    BottomNavigationBarItem(
+                      icon: _buildNavIcon(
+                        icon: Icons.widgets_rounded,
+                        selected: value == 1,
+                        color: const Color(0xFF43A047),
+                      ),
+                      label: 'Category',
+                    ),
+                  ],
+                ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }
