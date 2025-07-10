@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:personal_money_manager/models/category/category_model.dart';
-import 'package:personal_money_manager/models/transaction/transaction_model.dart';
-import 'package:personal_money_manager/screens/home/screen_home.dart';
+import 'package:finmate/models/category/category_model.dart';
+import 'package:finmate/models/transaction/transaction_model.dart';
+import 'package:finmate/screens/home/screen_home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
