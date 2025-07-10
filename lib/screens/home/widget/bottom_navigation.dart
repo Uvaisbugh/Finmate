@@ -6,29 +6,86 @@ class MoneyManagerBottomNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: ScreenHome.selectedIndexNotifier,
-      builder: (context, value, child) {
-        return BottomNavigationBar(
-          selectedItemColor: Theme.of(context).primaryColor,
-          unselectedItemColor: Colors.grey,
-          currentIndex: ScreenHome.selectedIndexNotifier.value,
-          onTap: (int index) {
-            // Update the selected index in the ValueNotifier
-            ScreenHome.selectedIndexNotifier.value = index;
-          },
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Transactions',
+    return Padding(
+      padding: const EdgeInsets.only(left: 24, right: 24, bottom: 18),
+      child: ValueListenableBuilder(
+        valueListenable: ScreenHome.selectedIndexNotifier,
+        builder: (context, value, child) {
+          return PhysicalModel(
+            color: Colors.transparent,
+            elevation: 16,
+            borderRadius: BorderRadius.circular(30),
+            shadowColor: Colors.black.withOpacity(0.18),
+            child: Container(
+              height: 74, // Increased height for a premium look
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(30),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.08),
+                    blurRadius: 16,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: BottomNavigationBar(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                type: BottomNavigationBarType.fixed,
+                selectedItemColor: Theme.of(context).colorScheme.primary,
+                unselectedItemColor: Colors.blueGrey,
+                showSelectedLabels: true,
+                showUnselectedLabels: true,
+                iconSize: 32,
+                selectedFontSize: 14,
+                unselectedFontSize: 13,
+                currentIndex: ScreenHome.selectedIndexNotifier.value,
+                onTap: (int index) {
+                  ScreenHome.selectedIndexNotifier.value = index;
+                },
+                items: [
+                  BottomNavigationBarItem(
+                    icon: _buildNavIcon(
+                      icon: Icons.receipt_long_rounded,
+                      selected: value == 0,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                    label: 'Transactions',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: _buildNavIcon(
+                      icon: Icons.widgets_rounded,
+                      selected: value == 1,
+                      color: const Color(0xFF43A047),
+                    ),
+                    label: 'Category',
+                  ),
+                ],
+              ),
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.category),
-              label: 'Category',
-            ),
-          ],
-        );
-      },
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildNavIcon({
+    required IconData icon,
+    required bool selected,
+    required Color color,
+  }) {
+    return Center(
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 250),
+        curve: Curves.easeInOut,
+        decoration: BoxDecoration(
+          color: selected ? color.withOpacity(0.13) : Colors.transparent,
+          shape: BoxShape.circle,
+        ),
+        padding: const EdgeInsets.all(10),
+        child: Icon(icon, color: selected ? color : Colors.blueGrey, size: 28),
+      ),
     );
   }
 }
