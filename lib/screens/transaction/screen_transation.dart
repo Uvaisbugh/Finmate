@@ -21,7 +21,8 @@ class TransactionScreen extends StatelessWidget {
               double totalExpense = 0;
               double balance = 0;
 
-              final transactions = box.values.toList().cast<Transaction>();
+              final transactions = box.values.toList().cast<Transaction>()
+                ..sort((a, b) => b.date.compareTo(a.date));
               for (var transaction in transactions) {
                 if (transaction.amount > 0) {
                   totalIncome += transaction.amount;
@@ -33,54 +34,53 @@ class TransactionScreen extends StatelessWidget {
 
               return Column(
                 children: [
-                  // Uniform Summary Cards with IntrinsicHeight
-                  IntrinsicHeight(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Expanded(
-                          child: _buildSummaryCard(
-                            title: 'Balance',
-                            amount: balance,
-                            gradient: const LinearGradient(
-                              colors: [Color(0xFF2196F3), Color(0xFF64B5F6)],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ),
-                            icon: Icons.account_balance_wallet_rounded,
-                            iconBg: const Color(0xFF1976D2),
-                          ),
-                        ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: _buildSummaryCard(
-                            title: 'Income',
-                            amount: totalIncome,
-                            gradient: const LinearGradient(
-                              colors: [Color(0xFF43A047), Color(0xFF81C784)],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ),
-                            icon: Icons.trending_up_rounded,
-                            iconBg: const Color(0xFF388E3C),
-                          ),
-                        ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: _buildSummaryCard(
-                            title: 'Expense',
-                            amount: totalExpense,
-                            gradient: const LinearGradient(
-                              colors: [Color(0xFFE53935), Color(0xFFFFB74D)],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ),
-                            icon: Icons.trending_down_rounded,
-                            iconBg: const Color(0xFFD32F2F),
-                          ),
-                        ),
-                      ],
+                  // Full-width Balance Card
+                  _buildSummaryCard(
+                    title: 'Balance',
+                    amount: balance,
+                    gradient: const LinearGradient(
+                      colors: [Color(0xFF2196F3), Color(0xFF64B5F6)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
                     ),
+                    icon: Icons.account_balance_wallet_rounded,
+                    iconBg: const Color(0xFF1976D2),
+                    isFullWidth: true,
+                  ),
+                  const SizedBox(height: 12),
+                  // Income and Expense Cards Side by Side
+                  Row(
+                    children: [
+                      Expanded(
+                        child: _buildSummaryCard(
+                          title: 'Income',
+                          amount: totalIncome,
+                          gradient: const LinearGradient(
+                            colors: [Color(0xFF43A047), Color(0xFF81C784)],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
+                          icon: Icons.trending_up_rounded,
+                          iconBg: const Color(0xFF388E3C),
+                          isFullWidth: false,
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: _buildSummaryCard(
+                          title: 'Expense',
+                          amount: totalExpense,
+                          gradient: const LinearGradient(
+                            colors: [Color(0xFFE53935), Color(0xFFFFB74D)],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
+                          icon: Icons.trending_down_rounded,
+                          iconBg: const Color(0xFFD32F2F),
+                          isFullWidth: false,
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 24),
                   // Transactions List
@@ -176,11 +176,14 @@ class TransactionScreen extends StatelessWidget {
     required LinearGradient gradient,
     required IconData icon,
     required Color iconBg,
+    bool isFullWidth = false,
   }) {
     return Container(
+      width: isFullWidth ? double.infinity : null,
+      margin: isFullWidth ? const EdgeInsets.symmetric(horizontal: 2) : null,
       decoration: BoxDecoration(
         gradient: gradient,
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(isFullWidth ? 22 : 18),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.07),
@@ -190,7 +193,10 @@ class TransactionScreen extends StatelessWidget {
         ],
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 18),
+        padding: EdgeInsets.symmetric(
+          horizontal: isFullWidth ? 18 : 10,
+          vertical: isFullWidth ? 22 : 18,
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,

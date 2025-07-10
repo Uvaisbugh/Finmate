@@ -22,7 +22,6 @@ class MoneyManagerBottomNavigation extends StatelessWidget {
               borderRadius: BorderRadius.circular(30),
               shadowColor: Colors.black.withOpacity(0.18),
               child: Container(
-                // No height property here!
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(30),
@@ -42,29 +41,21 @@ class MoneyManagerBottomNavigation extends StatelessWidget {
                   unselectedItemColor: Colors.blueGrey,
                   showSelectedLabels: true,
                   showUnselectedLabels: true,
-                  iconSize: 32,
-                  selectedFontSize: 14,
-                  unselectedFontSize: 13,
+                  iconSize: 0, // No icons
+                  selectedFontSize: 16,
+                  unselectedFontSize: 15,
                   currentIndex: ScreenHome.selectedIndexNotifier.value,
                   onTap: (int index) {
                     ScreenHome.selectedIndexNotifier.value = index;
                   },
                   items: [
                     BottomNavigationBarItem(
-                      icon: _buildNavIcon(
-                        icon: Icons.receipt_long_rounded,
-                        selected: value == 0,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
+                      icon: SizedBox.shrink(),
                       label: 'Transactions',
                     ),
                     BottomNavigationBarItem(
-                      icon: _buildNavIcon(
-                        icon: Icons.widgets_rounded,
-                        selected: value == 1,
-                        color: const Color(0xFF43A047),
-                      ),
-                      label: 'Category',
+                      icon: SizedBox.shrink(),
+                      label: 'Analytics',
                     ),
                   ],
                 ),

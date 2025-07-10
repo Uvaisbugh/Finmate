@@ -63,16 +63,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Personal Money Manager',
+      title: 'Finmate',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color(0xFF1565C0),
           primary: const Color(0xFF1565C0),
           secondary: const Color(0xFF43A047),
           background: const Color(0xFFF5F7FB),
+          brightness: Brightness.light,
         ),
         scaffoldBackgroundColor: const Color(0xFFF5F7FB),
-        fontFamily: 'Roboto',
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.white,
           foregroundColor: Color(0xFF1565C0),
@@ -85,6 +85,52 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
+      darkTheme: ThemeData(
+        colorScheme: ColorScheme(
+          brightness: Brightness.dark,
+          primary: Color(0xFF1DB954),
+          onPrimary: Colors.black,
+          secondary: Color(0xFF222831),
+          onSecondary: Colors.white,
+          background: Colors.black,
+          onBackground: Colors.white,
+          surface: Color(0xFF181A20),
+          onSurface: Colors.white,
+          error: Colors.red.shade400,
+          onError: Colors.black,
+        ),
+        scaffoldBackgroundColor: Colors.black,
+        cardColor: Color(0xFF181A20),
+        dialogBackgroundColor: Color(0xFF181A20),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.black,
+          foregroundColor: Colors.white,
+          elevation: 0,
+          titleTextStyle: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+          ),
+          iconTheme: IconThemeData(color: Colors.white),
+        ),
+        iconTheme: const IconThemeData(color: Colors.white),
+        textTheme: TextTheme(
+          bodyLarge: TextStyle(color: Colors.white),
+          bodyMedium: TextStyle(color: Colors.white),
+          bodySmall: TextStyle(color: Colors.white70),
+          titleLarge: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+          titleMedium: TextStyle(color: Colors.white),
+          titleSmall: TextStyle(color: Colors.white70),
+          labelLarge: TextStyle(color: Colors.white),
+          labelMedium: TextStyle(color: Colors.white),
+          labelSmall: TextStyle(color: Colors.white70),
+        ),
+        useMaterial3: true,
+      ),
+      themeMode: ThemeMode.system,
       home: ScreenHome(),
       debugShowCheckedModeBanner: false,
     );
