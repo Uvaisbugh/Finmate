@@ -39,12 +39,10 @@ A modern Flutter application for managing personal finances with comprehensive i
 <div align="center">
   <img src="assets/screenshot/1.png" width="200" alt="Home Screen">
   <img src="assets/screenshot/2.png" width="200" alt="Add Transaction">
-  <img src="assets/screenshot/3.png" width="200" alt="Analytics Screen">
-  <br>
   <img src="assets/screenshot/4.png" width="200" alt="Category Management">
+  <br> 
   <img src="assets/screenshot/5.png" width="200" alt="Transaction History">
   <img src="assets/screenshot/6.png" width="200" alt="Income Categories">
-  <br>
   <img src="assets/screenshot/7.png" width="200" alt="Expense Categories">
 </div>
 
