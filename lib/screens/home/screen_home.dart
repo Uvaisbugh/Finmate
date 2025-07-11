@@ -7,16 +7,14 @@ import 'package:finmate/screens/analytics/analytics_screen.dart';
 
 class ScreenHome extends StatelessWidget {
   final VoidCallback? toggleTheme;
-  ScreenHome({super.key, this.toggleTheme});
+  const ScreenHome({super.key, this.toggleTheme});
 
   static ValueNotifier<int> selectedIndexNotifier = ValueNotifier(0);
   static const String routeName = '/home';
-  final GlobalKey<CategoryScreenState> categoryKey =
-      GlobalKey<CategoryScreenState>();
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> pages = [TransactionScreen(), AnalyticsScreen()];
+    final List<Widget> pages = const [TransactionScreen(), AnalyticsScreen()];
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -58,36 +56,31 @@ class ScreenHome extends StatelessWidget {
           ],
         ),
         body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-            child: Center(
-              child: ValueListenableBuilder(
-                valueListenable: selectedIndexNotifier,
-                builder: (context, value, child) {
-                  if (value < 0 || value >= pages.length) {
-                    return Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Icon(Icons.error, color: Colors.red, size: 48),
-                          SizedBox(height: 16),
-                          Text(
-                            'Page not found',
-                            style: TextStyle(fontSize: 20, color: Colors.red),
-                          ),
-                          SizedBox(height: 8),
-                          Text(
-                            'Please restart the app or contact support.',
-                            style: TextStyle(fontSize: 14, color: Colors.grey),
-                          ),
-                        ],
+          child: ValueListenableBuilder(
+            valueListenable: selectedIndexNotifier,
+            builder: (context, value, child) {
+              if (value < 0 || value >= pages.length) {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Icon(Icons.error, color: Colors.red, size: 48),
+                      SizedBox(height: 16),
+                      Text(
+                        'Page not found',
+                        style: TextStyle(fontSize: 20, color: Colors.red),
                       ),
-                    );
-                  }
-                  return pages[value];
-                },
-              ),
-            ),
+                      SizedBox(height: 8),
+                      Text(
+                        'Please restart the app or contact support.',
+                        style: TextStyle(fontSize: 14, color: Colors.grey),
+                      ),
+                    ],
+                  ),
+                );
+              }
+              return pages[value];
+            },
           ),
         ),
         floatingActionButton: ValueListenableBuilder<int>(
@@ -105,8 +98,8 @@ class ScreenHome extends StatelessWidget {
                   );
                 },
                 backgroundColor: Theme.of(context).colorScheme.primary,
-                child: const Icon(Icons.add, color: Colors.white),
                 tooltip: 'Add Transaction',
+                child: const Icon(Icons.add, color: Colors.white),
               );
             } else {
               return const SizedBox.shrink();

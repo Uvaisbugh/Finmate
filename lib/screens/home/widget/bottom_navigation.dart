@@ -66,23 +66,4 @@ class MoneyManagerBottomNavigation extends StatelessWidget {
       ),
     );
   }
-
-  Widget _buildNavIcon({
-    required IconData icon,
-    required bool selected,
-    required Color color,
-  }) {
-    return Center(
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 250),
-        curve: Curves.easeInOut,
-        decoration: BoxDecoration(
-          color: selected ? color.withOpacity(0.13) : Colors.transparent,
-          shape: BoxShape.circle,
-        ),
-        padding: const EdgeInsets.all(10),
-        child: Icon(icon, color: selected ? color : Colors.blueGrey, size: 28),
-      ),
-    );
-  }
 }

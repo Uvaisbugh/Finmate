@@ -66,12 +66,9 @@ class CategoryScreenState extends State<CategoryScreen>
                       fontWeight: FontWeight.w600,
                       fontSize: 15,
                     ),
-                    indicator: BoxDecoration(
-                      borderRadius: BorderRadius.circular(24),
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
+                    indicator: const BoxDecoration(color: Colors.transparent),
                     indicatorSize: TabBarIndicatorSize.tab,
-                    overlayColor: MaterialStateProperty.all(Colors.transparent),
+                    overlayColor: WidgetStateProperty.all(Colors.transparent),
                     tabs: [
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 4),
@@ -108,8 +105,8 @@ class CategoryScreenState extends State<CategoryScreen>
               child: FloatingActionButton(
                 onPressed: () => showAddCategoryDialog(context),
                 backgroundColor: Theme.of(context).colorScheme.primary,
-                child: const Icon(Icons.add, color: Colors.white),
                 tooltip: 'Add Category',
+                child: const Icon(Icons.add, color: Colors.white),
               ),
             ),
           ],

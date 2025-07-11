@@ -277,7 +277,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
             );
-          }).toList(),
+          }),
           if (topCategories.isEmpty)
             const ListTile(
               leading: CircleAvatar(
@@ -294,22 +294,6 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
       ),
     );
   }
-
-  Color _categoryColor(String name) {
-    // Simple color mapping for demo
-    switch (name.toLowerCase()) {
-      case 'food':
-        return Colors.blue;
-      case 'transport':
-        return Colors.green;
-      case 'shopping':
-        return Colors.orange;
-      case 'entertainment':
-        return Colors.purple;
-      case 'bills':
-        return Colors.red;
-      default:
-        return Colors.grey;
-    }
-  }
 }
+// This code defines an AnalyticsScreen that displays financial analytics using charts and lists.
+// It includes a horizontal month picker, a pie chart for spending by category, a bar chart
